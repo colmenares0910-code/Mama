@@ -4,821 +4,546 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Mamá 💗</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --rose: #c0436a;
-    --rose-light: #f5c6d6;
-    --rose-pale: #fff0f4;
-    --gold: #c9963c;
-    --cream: #fdf8f0;
-    --text-dark: #2a1a22;
-    --text-mid: #7a4a5c;
-  }
+:root {
+  --rose:#b03060; --rose2:#d4537e; --rose-light:#f5c6d6;
+  --rose-pale:#fff5f8; --gold:#b8903a; --cream:#fdf9f4;
+  --dark:#1a0e14; --mid:#6b3d52; --soft:#e8cdd8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;}
  
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* LOADING */
+#loading{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s ease;}
+#loading p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--rose-light);opacity:0;animation:fadeIn 1.5s 0.5s forwards;}
+#loading small{margin-top:1rem;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#6b3d52;opacity:0;animation:fadeIn 1.5s 1.2s forwards;}
+#loading-bar{width:160px;height:1px;background:#3a1a2a;margin-top:2rem;position:relative;overflow:hidden;}
+#loading-bar::after{content:'';position:absolute;inset:0 100% 0 0;background:var(--rose-light);animation:barSlide 2.2s 0.3s ease forwards;}
+@keyframes barSlide{to{right:0;}}
+@keyframes fadeIn{to{opacity:1;}}
  
-  html { scroll-behavior: smooth; }
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(165deg,#fdf0f4 0%,#fdf9f4 50%,#f8f0ea 100%);padding:2rem;overflow:hidden;}
+#hero canvas{position:absolute;inset:0;pointer-events:none;}
+.hero-eyebrow{font-size:0.7rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);opacity:0;animation:fadeUp 1s 2.8s forwards;margin-bottom:1.4rem;}
+#hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,12vw,9rem);font-weight:300;line-height:0.95;color:var(--dark);opacity:0;animation:fadeUp 1.2s 3s forwards;}
+#hero h1 span{display:block;font-style:italic;color:var(--rose);font-weight:300;}
+.hero-date{margin-top:1.8rem;font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--mid);opacity:0;animation:fadeUp 1s 3.4s forwards;}
+.hero-line{width:1px;height:0;background:var(--rose);margin:2rem auto 0;animation:lineGrow 1.2s 4s ease forwards;}
+@keyframes lineGrow{to{height:60px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
  
-  body {
-    font-family: 'Lato', sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    overflow-x: hidden;
-  }
+/* SECTIONS */
+.section-wrap{max-width:820px;margin:0 auto;padding:7rem 2rem;}
+.s-eyebrow{font-size:0.68rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;line-height:1.15;color:var(--dark);margin-bottom:2.8rem;}
+.s-title em{font-style:italic;color:var(--rose);}
+hr.div{border:none;border-top:1px solid var(--soft);max-width:820px;margin:0 auto;}
  
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    background: radial-gradient(ellipse at 60% 40%, #f9d8e6 0%, #fdf8f0 60%);
-    overflow: hidden;
-    padding: 2rem;
-  }
+/* CARTA */
+.carta-paper{background:white;border:1px solid var(--soft);border-radius:4px;padding:3.5rem 3rem;position:relative;box-shadow:0 2px 60px rgba(176,48,96,0.06);}
+.carta-paper::before{content:'';position:absolute;top:0;left:3rem;right:3rem;height:1px;background:linear-gradient(90deg,transparent,var(--rose-light),transparent);}
+.carta-body{font-family:'Cormorant Garamond',serif;font-size:1.22rem;line-height:2;color:var(--dark);font-weight:300;}
+.carta-body p{margin-bottom:1.5rem;}
+.carta-body p:last-child{margin-bottom:0;}
+.carta-firma{margin-top:2.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--rose);text-align:right;}
+.carta-deco{position:absolute;bottom:2rem;left:2rem;font-size:1.4rem;opacity:0.18;}
  
-  #hero canvas {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
+/* TIMELINE */
+.tl-list{display:flex;flex-direction:column;gap:0;position:relative;}
+.tl-list::before{content:'';position:absolute;left:80px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--rose-light) 10%,var(--rose-light) 90%,transparent);}
+.tl-item{display:flex;gap:2rem;align-items:flex-start;padding:2rem 0;opacity:0;transform:translateX(-20px);transition:opacity 0.7s,transform 0.7s;}
+.tl-item.visible{opacity:1;transform:translateX(0);}
+.tl-year{font-family:'Cormorant Garamond',serif;font-size:0.85rem;font-weight:600;color:var(--rose);text-align:right;width:60px;flex-shrink:0;padding-top:0.2rem;letter-spacing:0.05em;}
+.tl-dot{width:11px;height:11px;border-radius:50%;background:white;border:2px solid var(--rose);flex-shrink:0;margin-top:0.35rem;position:relative;z-index:1;}
+.tl-content{flex:1;}
+.tl-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--dark);margin-bottom:0.3rem;}
+.tl-desc{font-size:0.9rem;color:var(--mid);line-height:1.65;}
  
-  .hero-label {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 1.2rem;
-    opacity: 0;
-    animation: fadeUp 1s 0.3s forwards;
-  }
+/* RAZONES */
+.razones-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;}
+.razon-card{background:white;border:1px solid var(--soft);border-radius:16px;padding:1.6rem;display:flex;flex-direction:column;gap:0.7rem;opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s,box-shadow 0.3s;}
+.razon-card.visible{opacity:1;transform:translateY(0);}
+.razon-card:hover{box-shadow:0 6px 28px rgba(176,48,96,0.1);}
+.razon-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--rose-light);line-height:1;font-weight:300;}
+.razon-text{font-size:0.95rem;color:var(--mid);line-height:1.65;}
  
-  #hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    font-weight: 700;
-    line-height: 1.05;
-    color: var(--text-dark);
-    opacity: 0;
-    animation: fadeUp 1s 0.6s forwards;
-  }
+/* POEMA */
+#poema{background:var(--dark);padding:8rem 2rem;}
+.poema-wrap{max-width:620px;margin:0 auto;text-align:center;}
+.poema-lines{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:#e8d0d8;line-height:2.2;}
+.verse{display:block;}
+.stanza{display:block;margin-bottom:2rem;}
+.poema-author{margin-top:2.5rem;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#6b3d52;}
  
-  #hero h1 em {
-    font-style: italic;
-    color: var(--rose);
-  }
+/* RETRATO */
+#retrato{background:var(--rose-pale);padding:7rem 2rem;text-align:center;}
+#portrait-canvas{display:block;margin:0 auto;border-radius:50%;border:8px solid white;box-shadow:0 0 0 1px var(--rose-light),0 20px 60px rgba(176,48,96,0.2);}
+.retrato-caption{margin-top:1.8rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--mid);}
  
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--text-mid);
-    margin-top: 1.4rem;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeUp 1s 0.9s forwards;
-  }
+/* MEMORIES */
+.mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.mem-card{border-radius:16px;overflow:hidden;aspect-ratio:1;background:var(--soft);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;border:1px solid var(--rose-light);cursor:pointer;position:relative;opacity:0;transform:scale(0.95);transition:opacity 0.5s,transform 0.5s,box-shadow 0.3s;}
+.mem-card.visible{opacity:1;transform:scale(1);}
+.mem-card:hover{box-shadow:0 8px 30px rgba(176,48,96,0.15);}
+.mem-icon{font-size:2rem;}
+.mem-label{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);text-align:center;padding:0 0.5rem;}
+.mem-overlay{position:absolute;inset:0;background:rgba(26,14,20,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;border-radius:16px;}
+.mem-card:hover .mem-overlay{opacity:1;}
+.mem-overlay-txt{font-family:'Cormorant Garamond',serif;font-style:italic;color:white;font-size:0.95rem;text-align:center;padding:1rem;line-height:1.6;}
  
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    color: var(--text-mid);
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeUp 1s 1.5s forwards;
-  }
+/* PROMESAS */
+#promesas{background:var(--dark);padding:7rem 2rem;}
+.promesas-wrap{max-width:700px;margin:0 auto;}
+.promesa-list{display:flex;flex-direction:column;gap:1.5rem;}
+.promesa-item{display:flex;align-items:flex-start;gap:1.5rem;opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s;}
+.promesa-item.visible{opacity:1;transform:translateY(0);}
+.promesa-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--rose);line-height:1;font-weight:300;flex-shrink:0;width:2rem;text-align:right;}
+.promesa-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#e8d0d8;line-height:1.7;padding-top:0.4rem;}
  
-  .scroll-hint::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: var(--rose);
-    margin: 8px auto 0;
-    animation: lineGrow 1.5s 2s ease-out forwards;
-    transform-origin: top;
-    transform: scaleY(0);
-  }
+/* MENSAJES */
+.mensajes-list{display:flex;flex-direction:column;gap:1.2rem;}
+.mensaje-card{background:white;border-radius:0 20px 20px 0;border-left:3px solid var(--rose);padding:1.6rem 1.8rem;opacity:0;transform:translateX(-24px);transition:opacity 0.6s,transform 0.6s;}
+.mensaje-card.visible{opacity:1;transform:translateX(0);}
+.msg-autor{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);margin-bottom:0.6rem;}
+.msg-texto{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.7;}
+.add-msg{margin-top:2rem;background:white;border:1px solid var(--soft);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:0.8rem;}
+.add-msg input,.add-msg textarea{padding:0.75rem 1rem;border:1px solid var(--soft);border-radius:10px;font-family:'Jost',sans-serif;font-size:0.95rem;color:var(--dark);background:var(--cream);outline:none;resize:vertical;transition:border-color 0.2s;}
+.add-msg input:focus,.add-msg textarea:focus{border-color:var(--rose);}
  
-  @keyframes lineGrow { to { transform: scaleY(1); } }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* QUIZ */
+.quiz-box{background:white;border:1px solid var(--soft);border-radius:24px;padding:2.8rem;}
+.q-prog-txt{font-size:0.75rem;color:var(--mid);margin-bottom:0.4rem;letter-spacing:0.1em;}
+.q-bar{height:3px;background:var(--soft);border-radius:3px;margin-bottom:2rem;overflow:hidden;}
+.q-fill{height:100%;background:var(--rose);border-radius:3px;transition:width 0.4s ease;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:1.5rem;line-height:1.4;margin-bottom:1.8rem;color:var(--dark);}
+.q-opts{display:flex;flex-direction:column;gap:0.75rem;}
+.q-opt{padding:0.9rem 1.3rem;border:1px solid var(--soft);border-radius:12px;cursor:pointer;font-size:0.95rem;color:var(--dark);background:white;text-align:left;font-family:'Jost',sans-serif;transition:all 0.2s;}
+.q-opt:hover{border-color:var(--rose);background:var(--rose-pale);}
+.q-opt.correct{background:#eaf6ee;border-color:#4caf50;color:#2e7d32;}
+.q-opt.wrong{background:#fdecea;border-color:#e57373;color:#c62828;}
+.q-result{text-align:center;padding:1rem 0;}
+.q-score{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--rose);line-height:1;}
+.q-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--mid);margin-top:0.5rem;}
  
-  /* ── SECTION BASE ── */
-  section {
-    padding: 6rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
+/* FINAL */
+#final{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse at center,#fdf0f4 0%,var(--cream) 70%);position:relative;overflow:hidden;}
+.final-pre{font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+#final h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:300;line-height:1.15;color:var(--dark);margin-bottom:2rem;}
+#final h2 em{font-style:italic;color:var(--rose);}
+.final-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--mid);max-width:500px;line-height:1.8;margin:0 auto 3rem;}
+.final-heart{font-size:3rem;animation:heartbeat 1.8s infinite;}
+@keyframes heartbeat{0%,100%{transform:scale(1);}14%{transform:scale(1.2);}28%{transform:scale(1);}42%{transform:scale(1.15);}70%{transform:scale(1);}}
  
-  .section-label {
-    font-size: 0.78rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.6rem;
-    font-weight: 400;
-  }
- 
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--text-dark);
-    margin-bottom: 2.5rem;
-  }
- 
-  .section-title em { color: var(--rose); font-style: italic; }
- 
-  hr.divider {
-    border: none;
-    border-top: 1px solid var(--rose-light);
-    margin: 0;
-  }
- 
-  /* ── RAZONES ── */
-  #razones { background: transparent; }
- 
-  .razones-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.2rem;
-  }
- 
-  .razon-card {
-    background: white;
-    border: 1px solid var(--rose-light);
-    border-radius: 18px;
-    padding: 1.5rem 1.6rem;
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s, transform 0.6s, box-shadow 0.3s;
-  }
- 
-  .razon-card.visible { opacity: 1; transform: translateY(0); }
-  .razon-card:hover { box-shadow: 0 8px 30px rgba(192,67,106,0.12); }
- 
-  .razon-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--rose-light);
-    font-weight: 700;
-    line-height: 1;
-    flex-shrink: 0;
-    min-width: 2.5rem;
-  }
- 
-  .razon-text {
-    font-size: 1rem;
-    color: var(--text-mid);
-    line-height: 1.6;
-    padding-top: 0.35rem;
-  }
- 
-  .add-razon-wrap {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
- 
-  .add-razon-wrap input {
-    flex: 1;
-    min-width: 200px;
-    padding: 0.75rem 1.1rem;
-    border: 1px solid var(--rose-light);
-    border-radius: 40px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    background: white;
-    outline: none;
-    transition: border-color 0.2s;
-  }
- 
-  .add-razon-wrap input:focus { border-color: var(--rose); }
- 
-  .btn-rose {
-    padding: 0.75rem 1.6rem;
-    background: var(--rose);
-    color: white;
-    border: none;
-    border-radius: 40px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-  }
- 
-  .btn-rose:hover { background: #a8335a; }
-  .btn-rose:active { transform: scale(0.97); }
- 
-  /* ── ILUSTRACIÓN ── */
-  #ilustracion {
-    background: var(--rose-pale);
-    border-radius: 32px;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-    text-align: center;
-  }
- 
-  #portrait-canvas {
-    display: block;
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 6px solid white;
-    box-shadow: 0 12px 40px rgba(192,67,106,0.2);
-  }
- 
-  .portrait-caption {
-    margin-top: 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--text-mid);
-  }
- 
-  /* ── MENSAJES ── */
-  #mensajes { background: transparent; }
- 
-  .mensajes-list { display: flex; flex-direction: column; gap: 1.2rem; }
- 
-  .mensaje-card {
-    background: white;
-    border-left: 4px solid var(--rose);
-    border-radius: 0 16px 16px 0;
-    padding: 1.4rem 1.6rem;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.5s, transform 0.5s;
-  }
- 
-  .mensaje-card.visible { opacity: 1; transform: translateX(0); }
- 
-  .mensaje-autor {
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-  }
- 
-  .mensaje-texto {
-    font-size: 1.05rem;
-    color: var(--text-dark);
-    line-height: 1.65;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-  }
- 
-  .add-mensaje-wrap {
-    margin-top: 1.5rem;
-    background: white;
-    border: 1px solid var(--rose-light);
-    border-radius: 18px;
-    padding: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
- 
-  .add-mensaje-wrap input,
-  .add-mensaje-wrap textarea {
-    padding: 0.7rem 1rem;
-    border: 1px solid var(--rose-light);
-    border-radius: 10px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    background: var(--cream);
-    outline: none;
-    resize: vertical;
-    transition: border-color 0.2s;
-  }
- 
-  .add-mensaje-wrap input:focus,
-  .add-mensaje-wrap textarea:focus { border-color: var(--rose); }
- 
-  /* ── QUIZ ── */
-  #quiz { background: transparent; }
- 
-  .quiz-box {
-    background: white;
-    border: 1px solid var(--rose-light);
-    border-radius: 24px;
-    padding: 2.5rem;
-  }
- 
-  .quiz-progress {
-    font-size: 0.8rem;
-    color: var(--text-mid);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
-  }
- 
-  .quiz-progress-bar {
-    height: 4px;
-    background: var(--rose-light);
-    border-radius: 4px;
-    margin-bottom: 1.8rem;
-    overflow: hidden;
-  }
- 
-  .quiz-progress-fill {
-    height: 100%;
-    background: var(--rose);
-    border-radius: 4px;
-    transition: width 0.4s ease;
-  }
- 
-  .quiz-question {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--text-dark);
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
-  }
- 
-  .quiz-options {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
- 
-  .quiz-option {
-    padding: 0.9rem 1.3rem;
-    border: 1.5px solid var(--rose-light);
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 0.97rem;
-    color: var(--text-dark);
-    background: white;
-    text-align: left;
-    font-family: 'Lato', sans-serif;
-    transition: all 0.2s;
-  }
- 
-  .quiz-option:hover { border-color: var(--rose); background: var(--rose-pale); }
-  .quiz-option.correct { background: #eaf6ee; border-color: #4caf50; color: #2e7d32; }
-  .quiz-option.wrong { background: #fdecea; border-color: #e57373; color: #c62828; }
- 
-  .quiz-result {
-    text-align: center;
-    padding: 2rem 0 0;
-  }
- 
-  .quiz-score {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    color: var(--rose);
-    font-weight: 700;
-  }
- 
-  .quiz-result-msg {
-    font-size: 1.1rem;
-    color: var(--text-mid);
-    margin-top: 0.5rem;
-    font-style: italic;
-  }
- 
-  .btn-outline {
-    margin-top: 1.2rem;
-    padding: 0.7rem 1.5rem;
-    border: 1.5px solid var(--rose);
-    border-radius: 40px;
-    background: transparent;
-    color: var(--rose);
-    font-family: 'Lato', sans-serif;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
- 
-  .btn-outline:hover { background: var(--rose); color: white; }
- 
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--text-dark);
-    color: white;
-  }
- 
-  footer p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-style: italic;
-    color: var(--rose-light);
-    margin-bottom: 0.5rem;
-  }
- 
-  footer small {
-    font-size: 0.8rem;
-    color: #a07080;
-    letter-spacing: 0.15em;
-  }
- 
-  /* HEARTS CONFETTI */
-  .heart-particle {
-    position: fixed;
-    pointer-events: none;
-    font-size: 1.2rem;
-    animation: fallDown linear forwards;
-    z-index: 999;
-  }
- 
-  @keyframes fallDown {
-    0% { opacity: 1; transform: translateY(-20px) rotate(0deg); }
-    100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
-  }
+/* UTILS */
+.btn-r{padding:0.8rem 1.8rem;background:var(--rose);color:white;border:none;border-radius:40px;font-family:'Jost',sans-serif;font-size:0.9rem;cursor:pointer;transition:background 0.2s,transform 0.15s;}
+.btn-r:hover{background:#923055;}
+.btn-r:active{transform:scale(0.97);}
+.btn-o{padding:0.75rem 1.6rem;background:transparent;border:1px solid var(--rose);color:var(--rose);border-radius:40px;font-family:'Jost',sans-serif;font-size:0.9rem;cursor:pointer;transition:all 0.2s;}
+.btn-o:hover{background:var(--rose);color:white;}
+.hpart{position:fixed;pointer-events:none;animation:fallPetal linear forwards;z-index:9999;}
+@keyframes fallPetal{0%{opacity:1;transform:translateY(-30px) rotate(0deg) scale(1);}100%{opacity:0;transform:translateY(105vh) rotate(720deg) scale(0.5);}}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s,transform 0.7s;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
 </style>
 </head>
 <body>
  
-<!-- ── HERO ── -->
+<div id="loading">
+  <p>Preparando algo especial para ti...</p>
+  <small>Con mucho amor</small>
+  <div id="loading-bar"></div>
+</div>
+ 
+<!-- HERO -->
 <div id="hero">
   <canvas id="petals-canvas"></canvas>
-  <p class="hero-label">Con todo mi amor</p>
-  <h1>Para ti,<br><em>Mamá</em></h1>
-  <p class="hero-sub">Hoy y siempre, gracias por todo lo que eres.</p>
-  <p class="scroll-hint">Sigue leyendo</p>
+  <p class="hero-eyebrow">Un regalo que viene del corazón</p>
+  <h1>Mamá<span>eres todo.</span></h1>
+  <p class="hero-date">Feliz Día de las Madres</p>
+  <div class="hero-line"></div>
 </div>
  
-<div style="max-width:900px;margin:0 auto;padding:0 2rem;">
-  <hr class="divider">
-</div>
+<hr class="div">
  
-<!-- ── RAZONES ── -->
-<section id="razones">
-  <p class="section-label">De mi corazón al tuyo</p>
-  <h2 class="section-title">Las razones por las<br>que te <em>amo</em></h2>
-  <div class="razones-grid" id="razones-grid"></div>
-  <div class="add-razon-wrap">
-    <input type="text" id="nueva-razon" placeholder="Agrega otra razón…" maxlength="120">
-    <button class="btn-rose" onclick="agregarRazon()">Agregar ♡</button>
+<!-- CARTA -->
+<section id="carta">
+  <div class="section-wrap">
+    <p class="s-eyebrow">De mi puño y letra</p>
+    <h2 class="s-title">Una carta <em>para ti</em></h2>
+    <div class="carta-paper fade-in">
+      <span class="carta-deco">✦</span>
+      <div class="carta-body">
+        <p>Mamá,</p>
+        <p>Hay cosas que uno sabe desde siempre pero que le cuesta decir en voz alta. Esta es una de ellas: no sé quién sería sin ti. No lo sé, y no quiero saberlo.</p>
+        <p>Crecí viendo tus manos trabajar, tus ojos preocupados por nosotros, tu sonrisa apareciendo incluso en los días más difíciles. Crecí aprendiendo de ti, sin darme cuenta de que aprendía. Aprendí que el amor no se declama — se demuestra. Cada día. En los detalles pequeños que solo los que aman de verdad son capaces de hacer.</p>
+        <p>Hay momentos que guardo como tesoros: la forma en que me abrazas cuando estoy triste, tu risa cuando algo te parece gracioso de verdad, el olor de tu cocina que es sinónimo de hogar. Nadie más en el mundo puede darme eso.</p>
+        <p>Hoy quiero que sepas que te veo. Que veo todo lo que haces, todo lo que das, todo lo que sacrificas sin pedir nada a cambio. Y que por eso, y por mil cosas más que tardaría toda la vida en escribir, te amo más de lo que las palabras alcanzan a decir.</p>
+        <p>Gracias por ser mi mamá. Gracias por ser exactamente quien eres.</p>
+      </div>
+      <p class="carta-firma">Con todo mi amor, siempre. 💗</p>
+    </div>
   </div>
 </section>
  
-<div style="max-width:900px;margin:0 auto;padding:0 2rem;">
-  <hr class="divider">
-</div>
+<hr class="div">
  
-<!-- ── ILUSTRACIÓN ── -->
-<section id="ilustracion" style="padding:5rem 2rem; border-radius:32px; background:#fff0f4; max-width:900px; margin:2rem auto;">
-  <p class="section-label">Un retrato con amor</p>
-  <h2 class="section-title" style="text-align:center">Tu <em>retrato</em></h2>
-  <canvas id="portrait-canvas" width="260" height="260"></canvas>
-  <p class="portrait-caption">Pintado hoy, guardado para siempre.</p>
+<!-- LÍNEA DE TIEMPO -->
+<section id="timeline">
+  <div class="section-wrap">
+    <p class="s-eyebrow">Nuestra historia</p>
+    <h2 class="s-title">Los momentos que<br>nos <em>definen</em></h2>
+    <div class="tl-list" id="tl-list"></div>
+  </div>
 </section>
  
-<div style="max-width:900px;margin:2rem auto;padding:0 2rem;">
-  <hr class="divider">
-</div>
+<hr class="div">
  
-<!-- ── MENSAJES ── -->
+<!-- RAZONES -->
+<section id="razones" style="background:var(--rose-pale);padding:7rem 2rem;">
+  <div style="max-width:820px;margin:0 auto;">
+    <p class="s-eyebrow">De mi alma a la tuya</p>
+    <h2 class="s-title">Las razones por las<br>que te <em>amo</em></h2>
+    <div class="razones-grid" id="razones-grid"></div>
+    <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <input id="nueva-razon" type="text" placeholder="Agrega tu propia razón…" maxlength="120"
+        style="flex:1;min-width:200px;padding:0.75rem 1.2rem;border:1px solid var(--soft);border-radius:40px;font-family:'Jost',sans-serif;font-size:0.95rem;color:var(--dark);background:white;outline:none;">
+      <button class="btn-r" onclick="agregarRazon()">Agregar ♡</button>
+    </div>
+  </div>
+</section>
+ 
+<!-- POEMA -->
+<section id="poema">
+  <div class="poema-wrap">
+    <p class="s-eyebrow" style="color:var(--gold);">Escrito para ti</p>
+    <h2 class="s-title" style="color:white;"><em>Poema</em> de una madre</h2>
+    <div class="poema-lines fade-in">
+      <span class="stanza">
+        <span class="verse">Antes de que supieras mi nombre,</span>
+        <span class="verse">ya eras la persona más importante del mundo.</span>
+        <span class="verse">Llegaste y me enseñaste</span>
+        <span class="verse">que el corazón puede crecer sin límite.</span>
+      </span>
+      <span class="stanza">
+        <span class="verse">Cargué tus miedos como si fueran míos,</span>
+        <span class="verse">celebré tus risas como si fueran fiestas,</span>
+        <span class="verse">y en los días grises,</span>
+        <span class="verse">aprendí que basta con estar.</span>
+      </span>
+      <span class="stanza">
+        <span class="verse">No soy perfecta — lo sé —</span>
+        <span class="verse">pero amarte lo es.</span>
+        <span class="verse">Y si la vida me diera otra oportunidad</span>
+        <span class="verse">elegiría ser tu madre otra vez.</span>
+      </span>
+      <span class="stanza" style="margin-bottom:0;">
+        <span class="verse">Siempre.</span>
+        <span class="verse">Sin dudar.</span>
+        <span class="verse">Una y mil veces más.</span>
+      </span>
+    </div>
+    <p class="poema-author">— Escrito con amor</p>
+  </div>
+</section>
+ 
+<!-- RETRATO -->
+<section id="retrato">
+  <p class="s-eyebrow" style="text-align:center;">Un retrato con amor</p>
+  <h2 class="s-title" style="text-align:center;max-width:820px;margin:0 auto 2.5rem;">Tu <em>retrato</em></h2>
+  <canvas id="portrait-canvas" width="280" height="280"></canvas>
+  <p class="retrato-caption">Pintada de amor, hoy y siempre.</p>
+</section>
+ 
+<hr class="div">
+ 
+<!-- MEMORIES -->
+<section id="memories">
+  <div class="section-wrap">
+    <p class="s-eyebrow">Lo que guardamos</p>
+    <h2 class="s-title">Recuerdos que<br>viven en <em>nosotros</em></h2>
+    <div class="mem-grid" id="mem-grid"></div>
+  </div>
+</section>
+ 
+<hr class="div">
+ 
+<!-- PROMESAS -->
+<section id="promesas">
+  <div class="promesas-wrap">
+    <p class="s-eyebrow" style="color:var(--gold);">Mi compromiso contigo</p>
+    <h2 class="s-title" style="color:white;">Mis <em>promesas</em> para ti</h2>
+    <div class="promesa-list" id="promesa-list"></div>
+  </div>
+</section>
+ 
+<!-- MENSAJES -->
 <section id="mensajes">
-  <p class="section-label">La familia habla</p>
-  <h2 class="section-title">Mensajes de<br>quienes te <em>quieren</em></h2>
-  <div class="mensajes-list" id="mensajes-list"></div>
-  <div class="add-mensaje-wrap" style="margin-top:1.5rem">
-    <input type="text" id="msg-autor" placeholder="Tu nombre (ej: Tía Carmen)">
-    <textarea id="msg-texto" rows="3" placeholder="Escribe tu mensaje para mamá…"></textarea>
-    <button class="btn-rose" style="align-self:flex-end" onclick="agregarMensaje()">Enviar mensaje ♡</button>
+  <div class="section-wrap">
+    <p class="s-eyebrow">La familia entera te quiere</p>
+    <h2 class="s-title">Mensajes de<br>quienes te <em>aman</em></h2>
+    <div class="mensajes-list" id="mensajes-list"></div>
+    <div class="add-msg">
+      <input id="msg-autor" type="text" placeholder="Tu nombre (ej: Tía Carmen)">
+      <textarea id="msg-texto" rows="3" placeholder="Escribe tu mensaje para mamá…"></textarea>
+      <button class="btn-r" style="align-self:flex-end" onclick="agregarMensaje()">Enviar con amor ♡</button>
+    </div>
   </div>
 </section>
  
-<div style="max-width:900px;margin:0 auto;padding:0 2rem;">
-  <hr class="divider">
-</div>
+<hr class="div">
  
-<!-- ── QUIZ ── -->
+<!-- QUIZ -->
 <section id="quiz">
-  <p class="section-label">Juguemos</p>
-  <h2 class="section-title">¿Cuánto nos <em>conocemos</em>?</h2>
-  <div class="quiz-box" id="quiz-box">
-    <div class="quiz-progress" id="quiz-prog-text">Pregunta 1 de 5</div>
-    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-bar" style="width:20%"></div></div>
-    <p class="quiz-question" id="quiz-q"></p>
-    <div class="quiz-options" id="quiz-opts"></div>
+  <div class="section-wrap">
+    <p class="s-eyebrow">Juguemos</p>
+    <h2 class="s-title">¿Cuánto nos <em>conocemos</em>?</h2>
+    <div class="quiz-box" id="quiz-box">
+      <div class="q-prog-txt" id="q-prog-txt">Pregunta 1 de 5</div>
+      <div class="q-bar"><div class="q-fill" id="q-fill" style="width:20%"></div></div>
+      <p class="q-text" id="q-text"></p>
+      <div class="q-opts" id="q-opts"></div>
+    </div>
   </div>
 </section>
  
-<!-- ── FOOTER ── -->
-<footer>
-  <p>"El amor de una madre es la fuerza más poderosa del mundo."</p>
-  <small>FELIZ DÍA DE LAS MADRES · CON TODO MI AMOR</small>
-</footer>
+<!-- FINAL -->
+<div id="final">
+  <canvas id="final-canvas" style="position:absolute;inset:0;pointer-events:none;width:100%;height:100%;"></canvas>
+  <p class="final-pre">Y lo más importante de todo</p>
+  <h2>Te amo,<br><em>mamá.</em></h2>
+  <p class="final-quote">
+    "El amor de una madre es la fuerza más poderosa del mundo.<br>No conoce ley, ni piedad, ni límite."<br>
+    <span style="font-size:0.8rem;letter-spacing:0.15em;font-style:normal;color:var(--gold);">— Con todo mi corazón</span>
+  </p>
+  <div class="final-heart">💗</div>
+</div>
  
 <script>
-/* ── PÉTALOS HERO ── */
+/* LOADING */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const l=document.getElementById('loading');
+    l.style.opacity='0';
+    setTimeout(()=>l.remove(),1000);
+  },2500);
+});
+ 
+/* PÉTALOS */
 (function(){
-  const c = document.getElementById('petals-canvas');
-  const ctx = c.getContext('2d');
-  let W, H, petals = [];
-  function resize(){ W = c.width = innerWidth; H = c.height = innerHeight; }
-  resize(); window.addEventListener('resize', resize);
-  function Petal(){
-    this.x = Math.random()*W;
-    this.y = Math.random()*-H;
-    this.size = 6 + Math.random()*10;
-    this.speed = 0.5 + Math.random()*1.2;
-    this.drift = (Math.random()-0.5)*0.5;
-    this.rot = Math.random()*Math.PI*2;
-    this.rotSpeed = (Math.random()-0.5)*0.04;
-    this.alpha = 0.4 + Math.random()*0.5;
-  }
-  for(let i=0;i<55;i++) petals.push(new Petal());
-  function drawHeart(x,y,size,rot){
-    ctx.save();
-    ctx.translate(x,y);
-    ctx.rotate(rot);
-    ctx.scale(size/15, size/15);
-    ctx.beginPath();
-    ctx.moveTo(0,-5);
-    ctx.bezierCurveTo(5,-10,12,-3,0,6);
-    ctx.bezierCurveTo(-12,-3,-5,-10,0,-5);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  }
+  const c=document.getElementById('petals-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,petals=[];
+  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  const EM=['🌸','💗','🌷','💕','✿'];
+  function P(){this.x=Math.random()*W;this.y=Math.random()*-H*2;this.size=14+Math.random()*14;this.speed=0.4+Math.random()*0.9;this.drift=(Math.random()-0.5)*0.4;this.rot=Math.random()*Math.PI*2;this.rotS=(Math.random()-0.5)*0.02;this.alpha=0.3+Math.random()*0.4;this.e=EM[Math.floor(Math.random()*EM.length)];}
+  for(let i=0;i<40;i++)petals.push(new P());
   function loop(){
     ctx.clearRect(0,0,W,H);
-    petals.forEach(p=>{
-      ctx.globalAlpha = p.alpha;
-      ctx.fillStyle = `hsl(${340+Math.random()*20},80%,${70+Math.random()*15}%)`;
-      drawHeart(p.x, p.y, p.size, p.rot);
-      p.y += p.speed; p.x += p.drift; p.rot += p.rotSpeed;
-      if(p.y > H+20){ p.x = Math.random()*W; p.y = -20; }
-    });
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(loop);
+    petals.forEach(p=>{ctx.globalAlpha=p.alpha;ctx.font=p.size+'px serif';ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillText(p.e,-p.size/2,-p.size/2);ctx.restore();p.y+=p.speed;p.x+=p.drift;p.rot+=p.rotS;if(p.y>H+30){p.x=Math.random()*W;p.y=-30;}});
+    ctx.globalAlpha=1;requestAnimationFrame(loop);
   }
   loop();
 })();
  
-/* ── SCROLL REVEAL ── */
-function onScroll(){
-  document.querySelectorAll('.razon-card, .mensaje-card').forEach(el=>{
-    const r = el.getBoundingClientRect();
-    if(r.top < innerHeight - 60) el.classList.add('visible');
-  });
-}
-window.addEventListener('scroll', onScroll);
- 
-/* ── RAZONES ── */
-const razones = [
-  "Por cada abrazo que siempre llega justo cuando lo necesito.",
-  "Por enseñarme a levantarme cada vez que me caigo.",
-  "Por tu risa, que ilumina cualquier cuarto.",
-  "Por cocinar con tanto amor que la comida sabe diferente.",
-  "Por estar presente en los momentos más importantes.",
-  "Por creer en mí incluso cuando yo no lo hago.",
-  "Por tu fuerza y tu valentía que me inspiran cada día.",
-  "Por hacerme sentir el ser más amado del mundo."
-];
- 
-function renderRazones(){
-  const grid = document.getElementById('razones-grid');
-  grid.innerHTML = '';
-  razones.forEach((r,i)=>{
-    const d = document.createElement('div');
-    d.className = 'razon-card';
-    d.style.transitionDelay = (i*0.07)+'s';
-    d.innerHTML = `<span class="razon-num">${String(i+1).padStart(2,'0')}</span><p class="razon-text">${r}</p>`;
-    grid.appendChild(d);
-  });
-  setTimeout(onScroll, 100);
-}
- 
-function agregarRazon(){
-  const inp = document.getElementById('nueva-razon');
-  const val = inp.value.trim();
-  if(!val) return;
-  razones.push(val);
-  inp.value = '';
-  renderRazones();
-  lanzarCorazones();
-  setTimeout(()=>{ document.querySelectorAll('.razon-card').forEach(c=>c.classList.add('visible')); },200);
-}
- 
-document.getElementById('nueva-razon').addEventListener('keydown', e=>{ if(e.key==='Enter') agregarRazon(); });
- 
-renderRazones();
- 
-/* ── RETRATO ILUSTRADO ── */
+/* FINAL STARS */
 (function(){
-  const c = document.getElementById('portrait-canvas');
-  const ctx = c.getContext('2d');
-  const W = c.width, H = c.height;
-  const cx = W/2, cy = H/2;
- 
-  // fondo circular suave
-  const bg = ctx.createRadialGradient(cx,cy-10,10,cx,cy,130);
-  bg.addColorStop(0,'#fddde8'); bg.addColorStop(1,'#f7a8c0');
-  ctx.beginPath(); ctx.arc(cx,cy,125,0,Math.PI*2); ctx.fillStyle=bg; ctx.fill();
- 
-  // cuello
-  ctx.fillStyle='#f0c8a0';
-  ctx.beginPath(); ctx.roundRect(cx-20,140,40,50,4); ctx.fill();
- 
-  // hombros / blusa
-  ctx.fillStyle='#c0436a';
-  ctx.beginPath();
-  ctx.ellipse(cx,200,72,38,0,Math.PI,Math.PI*2,true); ctx.fill();
- 
-  // cara
-  const face = ctx.createRadialGradient(cx,100,5,cx,100,55);
-  face.addColorStop(0,'#f7d5b0'); face.addColorStop(1,'#e8b88a');
-  ctx.beginPath(); ctx.ellipse(cx,100,52,60,0,0,Math.PI*2); ctx.fillStyle=face; ctx.fill();
- 
-  // pelo
-  ctx.fillStyle='#4a2c0a';
-  // cuerpo del pelo
-  ctx.beginPath(); ctx.ellipse(cx,85,56,65,0,Math.PI,Math.PI*2,true); ctx.fill();
-  // mechones laterales
-  ctx.beginPath(); ctx.ellipse(cx-50,110,15,40,0.3,0,Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.ellipse(cx+50,110,15,40,-0.3,0,Math.PI*2); ctx.fill();
- 
-  // re-face encima pelo
-  ctx.beginPath(); ctx.ellipse(cx,102,50,56,0,0,Math.PI*2); ctx.fillStyle=face; ctx.fill();
- 
-  // cejas
-  ctx.strokeStyle='#4a2c0a'; ctx.lineWidth=2.5; ctx.lineCap='round';
-  ctx.beginPath(); ctx.moveTo(cx-26,74); ctx.quadraticCurveTo(cx-18,70,cx-10,74); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(cx+10,74); ctx.quadraticCurveTo(cx+18,70,cx+26,74); ctx.stroke();
- 
-  // ojos
-  [-22,22].forEach(ox=>{
-    ctx.fillStyle='white'; ctx.beginPath(); ctx.ellipse(cx+ox,90,10,8,0,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#3a1a0a'; ctx.beginPath(); ctx.arc(cx+ox,91,5,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='white'; ctx.beginPath(); ctx.arc(cx+ox-2,88,2,0,Math.PI*2); ctx.fill();
-    // pestañas
-    ctx.strokeStyle='#2a1005'; ctx.lineWidth=1.5;
-    for(let a=-0.8;a<=0.8;a+=0.4){
-      ctx.beginPath();
-      ctx.moveTo(cx+ox+Math.sin(a)*10,90-Math.cos(a)*8);
-      ctx.lineTo(cx+ox+Math.sin(a)*14,90-Math.cos(a)*13);
-      ctx.stroke();
-    }
-  });
- 
-  // nariz
-  ctx.strokeStyle='#c8906a'; ctx.lineWidth=1.5;
-  ctx.beginPath(); ctx.moveTo(cx-5,100); ctx.quadraticCurveTo(cx-8,112,cx-4,115); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(cx+5,100); ctx.quadraticCurveTo(cx+8,112,cx+4,115); ctx.stroke();
- 
-  // sonrisa
-  ctx.strokeStyle='#c0436a'; ctx.lineWidth=2.5; ctx.lineCap='round';
-  ctx.beginPath(); ctx.moveTo(cx-18,126); ctx.quadraticCurveTo(cx,136,cx+18,126); ctx.stroke();
-  // labios
-  ctx.fillStyle='#e06080';
-  ctx.beginPath(); ctx.ellipse(cx,128,14,5,0,Math.PI,Math.PI*2,true); ctx.fill();
-  ctx.fillStyle='#c0436a';
-  ctx.beginPath(); ctx.ellipse(cx,131,14,6,0,0,Math.PI); ctx.fill();
- 
-  // mejillas sonrojadas
-  ctx.fillStyle='rgba(220,100,130,0.18)';
-  ctx.beginPath(); ctx.ellipse(cx-34,118,14,9,0,0,Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.ellipse(cx+34,118,14,9,0,0,Math.PI*2); ctx.fill();
- 
-  // flor en el pelo
-  [[-15,-10],[15,-10],[0,-22],[-20,-20],[20,-20]].forEach(([ox,oy])=>{
-    ctx.fillStyle='#f9d8e6';
-    ctx.beginPath(); ctx.ellipse(cx+40+ox,38+oy,5,8,-0.5,0,Math.PI*2); ctx.fill();
-  });
-  ctx.fillStyle='#ffdd57';
-  ctx.beginPath(); ctx.arc(cx+40,38,5,0,Math.PI*2); ctx.fill();
+  const c=document.getElementById('final-canvas');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){W=c.width=c.parentElement.offsetWidth;H=c.height=c.parentElement.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+  const stars=Array.from({length:60},()=>({x:Math.random(),y:Math.random(),r:0.5+Math.random()*1.5,alpha:Math.random(),d:Math.random()*Math.PI*2}));
+  function loop(){
+    if(!W)resize();
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s=>{s.d+=0.01;s.alpha=0.15+0.25*Math.abs(Math.sin(s.d));ctx.globalAlpha=s.alpha;ctx.fillStyle='#c0436a';ctx.beginPath();ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);ctx.fill();});
+    ctx.globalAlpha=1;requestAnimationFrame(loop);
+  }
+  loop();
 })();
  
-/* ── MENSAJES ── */
-const msgsDefault = [
-  { autor: 'Tu hij@', texto: 'Mamá, eres mi superheroína favorita. Gracias por todo tu amor incondicional.' },
-  { autor: 'Papá', texto: 'Gracias por ser la luz de esta familia. Te amamos más de lo que las palabras pueden decir.' },
-  { autor: 'La familia entera', texto: 'Hoy te celebramos con todo el corazón. ¡Feliz Día de las Madres!' },
-];
+/* SCROLL REVEAL */
+function onScroll(){
+  document.querySelectorAll('.razon-card,.mensaje-card,.tl-item,.promesa-item,.mem-card,.fade-in').forEach(el=>{
+    if(el.getBoundingClientRect().top<innerHeight-60)el.classList.add('visible');
+  });
+}
+window.addEventListener('scroll',onScroll);
+setTimeout(onScroll,400);
  
+/* TIMELINE */
+const eventos=[
+  {year:'El inicio',title:'Antes de que yo existiera',desc:'Tú ya lo dabas todo. Cada sacrificio que hiciste antes de conocerme fue la primera página de nuestra historia.'},
+  {year:'El día',title:'El día que todo cambió',desc:'El día que nací, el mundo se reorganizó alrededor de un nuevo amor. Desde ese momento, nunca volviste a ser solo tú.'},
+  {year:'La niñez',title:'Mis primeros pasos',desc:'Me enseñaste a caminar, a hablar, a caerme y levantarme. Pero sobre todo, me enseñaste que siempre habría alguien para sostenerme.'},
+  {year:'El colegio',title:'Los años de crecer',desc:'Estuviste en cada reunión, cada presentación, cada noche de tarea. Muchas veces sin que yo lo valorara como merecías.'},
+  {year:'Hoy',title:'Este momento',desc:'Hoy te escribo esto consciente de todo lo que eres. Gracias por seguir estando. Gracias por seguir siendo mi mamá cada día.'},
+];
+const tl=document.getElementById('tl-list');
+eventos.forEach((e,i)=>{
+  const d=document.createElement('div');d.className='tl-item';d.style.transitionDelay=(i*0.1)+'s';
+  d.innerHTML=`<div class="tl-year">${e.year}</div><div class="tl-dot"></div><div class="tl-content"><p class="tl-title">${e.title}</p><p class="tl-desc">${e.desc}</p></div>`;
+  tl.appendChild(d);
+});
+ 
+/* RAZONES */
+const razones=['Por tu abrazo, que es el lugar más seguro del mundo.','Por creer en mí incluso cuando yo dejé de creer en mí mismo.','Por cada noche de desvelo que nunca me contaste.','Por enseñarme que el amor no se dice solo — se demuestra.','Por tu risa, que es capaz de aligerar cualquier día.','Por perdonarme siempre, sin guardarte el rencor.','Por la forma en que me miras, como si fuera lo más valioso del mundo.','Por todo lo que nunca te pedí y tú ya sabías que necesitaba.'];
+function renderRazones(){
+  const g=document.getElementById('razones-grid');g.innerHTML='';
+  razones.forEach((r,i)=>{
+    const d=document.createElement('div');d.className='razon-card';d.style.transitionDelay=(i*0.06)+'s';
+    d.innerHTML=`<span class="razon-num">${String(i+1).padStart(2,'0')}</span><p class="razon-text">${r}</p>`;
+    g.appendChild(d);
+  });
+  setTimeout(onScroll,80);
+}
+function agregarRazon(){
+  const inp=document.getElementById('nueva-razon');const v=inp.value.trim();if(!v)return;
+  razones.push(v);inp.value='';renderRazones();lanzarCorazones();
+  setTimeout(()=>document.querySelectorAll('.razon-card').forEach(c=>c.classList.add('visible')),200);
+}
+document.getElementById('nueva-razon').addEventListener('keydown',e=>{if(e.key==='Enter')agregarRazon();});
+renderRazones();
+ 
+/* MEMORIES */
+const mems=[
+  {icon:'🌅',label:'Las mañanas juntas',caption:'Ese café de las mañanas que huele a hogar.'},
+  {icon:'🍽️',label:'La mesa familiar',caption:'Donde los problemas se achicaban y las risas crecían.'},
+  {icon:'🌧️',label:'Los días difíciles',caption:'Siempre estuviste. Sin preguntar demasiado.'},
+  {icon:'🎂',label:'Los cumpleaños',caption:'Hacías que cada uno se sintiera el más especial.'},
+  {icon:'📞',label:'Las llamadas',caption:'Tu voz al teléfono, siempre lista para escuchar.'},
+  {icon:'🌷',label:'El jardín de tu amor',caption:'Todo lo que sembraste en mí sigue floreciendo.'},
+];
+const mg=document.getElementById('mem-grid');
+mems.forEach((m,i)=>{
+  const d=document.createElement('div');d.className='mem-card';d.style.transitionDelay=(i*0.08)+'s';
+  d.innerHTML=`<span class="mem-icon">${m.icon}</span><span class="mem-label">${m.label}</span><div class="mem-overlay"><p class="mem-overlay-txt">"${m.caption}"</p></div>`;
+  mg.appendChild(d);
+});
+ 
+/* PROMESAS */
+const promesas=['Llamarte más seguido, no solo cuando necesito algo.','Decirte "te quiero" sin esperar que llegue el momento perfecto.','Escucharte de verdad, con el tiempo y la paciencia que mereces.','Estar presente en tu vida como tú siempre has estado en la mía.','Recordarte cada día que eres la persona más importante de mi mundo.'];
+const pl=document.getElementById('promesa-list');
+promesas.forEach((p,i)=>{
+  const d=document.createElement('div');d.className='promesa-item';d.style.transitionDelay=(i*0.12)+'s';
+  d.innerHTML=`<span class="promesa-num">${i+1}</span><p class="promesa-text">${p}</p>`;
+  pl.appendChild(d);
+});
+ 
+/* MENSAJES */
+const msgs=[
+  {autor:'Tu hijo',texto:'Mamá, este día no alcanza para decirte todo lo que significas para mí. Pero intento decírtelo con cada abrazo, cada llamada, cada momento. Te amo.'},
+  {autor:'Toda la familia',texto:'Eres el corazón de esta familia. Todo lo que somos viene de ti. Gracias por tanto amor dado sin condiciones.'},
+  {autor:'Miguel',texto:'Gracias por ser la mujer que eres, la madre que son y el amor que nos une. Hoy y siempre.'},
+];
 function renderMensajes(){
-  const list = document.getElementById('mensajes-list');
-  list.innerHTML = '';
-  msgsDefault.forEach((m,i)=>{
-    const d = document.createElement('div');
-    d.className = 'mensaje-card';
-    d.style.transitionDelay = (i*0.12)+'s';
-    d.innerHTML = `<p class="mensaje-autor">${m.autor}</p><p class="mensaje-texto">"${m.texto}"</p>`;
+  const list=document.getElementById('mensajes-list');list.innerHTML='';
+  msgs.forEach((m,i)=>{
+    const d=document.createElement('div');d.className='mensaje-card';d.style.transitionDelay=(i*0.12)+'s';
+    d.innerHTML=`<p class="msg-autor">${m.autor}</p><p class="msg-texto">"${m.texto}"</p>`;
     list.appendChild(d);
   });
-  setTimeout(onScroll,100);
+  setTimeout(onScroll,80);
 }
- 
 function agregarMensaje(){
-  const autor = document.getElementById('msg-autor').value.trim() || 'Anónimo';
-  const texto = document.getElementById('msg-texto').value.trim();
-  if(!texto) return;
-  msgsDefault.push({autor, texto});
-  document.getElementById('msg-autor').value='';
-  document.getElementById('msg-texto').value='';
-  renderMensajes();
-  lanzarCorazones();
-  setTimeout(()=>{ document.querySelectorAll('.mensaje-card').forEach(c=>c.classList.add('visible')); },200);
+  const autor=document.getElementById('msg-autor').value.trim()||'Anónimo';
+  const texto=document.getElementById('msg-texto').value.trim();if(!texto)return;
+  msgs.push({autor,texto});
+  document.getElementById('msg-autor').value='';document.getElementById('msg-texto').value='';
+  renderMensajes();lanzarCorazones();
+  setTimeout(()=>document.querySelectorAll('.mensaje-card').forEach(c=>c.classList.add('visible')),200);
 }
- 
 renderMensajes();
  
-/* ── QUIZ ── */
-const preguntas = [
-  { q:'¿Cuál es el plato favorito de mamá?', opts:['Pizza','Pollo al horno','Sushi','Pasta casera'], ok:1 },
-  { q:'¿Cuál es la película que más ha visto mamá?', opts:['Titanic','Dirty Dancing','El rey León','Pretty Woman'], ok:0 },
-  { q:'¿Cuál es el lugar donde mamá es más feliz?', opts:['La playa','En casa con la familia','El campo','De viaje'], ok:1 },
-  { q:'¿Cuántas veces al día mamá dice "te quiero"?', opts:['Nunca','Solo a veces','Siempre que puede','Solo antes de dormir'], ok:2 },
-  { q:'¿Cuál es el superpoder de mamá?', opts:['Saber cuándo estás triste','Cocinar sin receta','Encontrar todo lo perdido','Todos los anteriores'], ok:3 },
+/* RETRATO */
+(function(){
+  const c=document.getElementById('portrait-canvas');const ctx=c.getContext('2d');
+  const W=c.width,H=c.height,cx=W/2,cy=H/2;
+  const bg=ctx.createRadialGradient(cx,cy-10,10,cx,cy,140);
+  bg.addColorStop(0,'#fddde8');bg.addColorStop(1,'#f5a8c0');
+  ctx.beginPath();ctx.arc(cx,cy,135,0,Math.PI*2);ctx.fillStyle=bg;ctx.fill();
+  ctx.fillStyle='#e8b88a';ctx.beginPath();ctx.roundRect(cx-22,142,44,55,4);ctx.fill();
+  ctx.fillStyle='#b03060';ctx.beginPath();ctx.ellipse(cx,205,78,40,0,Math.PI,Math.PI*2,true);ctx.fill();
+  const face=ctx.createRadialGradient(cx,100,5,cx,100,58);
+  face.addColorStop(0,'#f7d5b0');face.addColorStop(1,'#e0b090');
+  ctx.beginPath();ctx.ellipse(cx,102,54,62,0,0,Math.PI*2);ctx.fillStyle=face;ctx.fill();
+  ctx.fillStyle='#3a1a08';
+  ctx.beginPath();ctx.ellipse(cx,85,58,68,0,Math.PI,Math.PI*2,true);ctx.fill();
+  ctx.beginPath();ctx.ellipse(cx-52,112,16,42,0.3,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(cx+52,112,16,42,-0.3,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(cx,104,52,58,0,0,Math.PI*2);ctx.fillStyle=face;ctx.fill();
+  ctx.strokeStyle='#3a1a08';ctx.lineWidth=2.5;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(cx-28,74);ctx.quadraticCurveTo(cx-18,70,cx-10,75);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx+10,75);ctx.quadraticCurveTo(cx+18,70,cx+28,74);ctx.stroke();
+  [-23,23].forEach(ox=>{
+    ctx.fillStyle='white';ctx.beginPath();ctx.ellipse(cx+ox,91,10,8,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#2a1005';ctx.beginPath();ctx.arc(cx+ox,92,5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='white';ctx.beginPath();ctx.arc(cx+ox-2,89,2,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#1a0803';ctx.lineWidth=1.5;
+    for(let a=-0.8;a<=0.8;a+=0.4){ctx.beginPath();ctx.moveTo(cx+ox+Math.sin(a)*10,91-Math.cos(a)*8);ctx.lineTo(cx+ox+Math.sin(a)*14,91-Math.cos(a)*13);ctx.stroke();}
+  });
+  ctx.strokeStyle='#c8906a';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(cx-5,102);ctx.quadraticCurveTo(cx-8,113,cx-4,116);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx+5,102);ctx.quadraticCurveTo(cx+8,113,cx+4,116);ctx.stroke();
+  ctx.strokeStyle='#b03060';ctx.lineWidth=2.5;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(cx-18,128);ctx.quadraticCurveTo(cx,138,cx+18,128);ctx.stroke();
+  ctx.fillStyle='#dd6090';ctx.beginPath();ctx.ellipse(cx,130,14,5,0,Math.PI,Math.PI*2,true);ctx.fill();
+  ctx.fillStyle='#b03060';ctx.beginPath();ctx.ellipse(cx,133,14,6,0,0,Math.PI);ctx.fill();
+  ctx.fillStyle='rgba(210,90,120,0.18)';
+  ctx.beginPath();ctx.ellipse(cx-36,120,14,9,0,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(cx+36,120,14,9,0,0,Math.PI*2);ctx.fill();
+  [[-14,-10],[14,-10],[0,-22],[-20,-18],[20,-18]].forEach(([ox,oy])=>{ctx.fillStyle='#f9d8e6';ctx.beginPath();ctx.ellipse(cx+38+ox,40+oy,5,8,-0.5,0,Math.PI*2);ctx.fill();});
+  ctx.fillStyle='#ffdd57';ctx.beginPath();ctx.arc(cx+38,40,5,0,Math.PI*2);ctx.fill();
+})();
+ 
+/* QUIZ */
+const qs=[
+  {q:'¿Qué hace mamá cuando alguien que quiere está triste?',opts:['Da consejos','Estar presente sin palabras','Prepararle algo rico','Todo lo anterior'],ok:3},
+  {q:'¿Cuál es la frase que más le sale del corazón a mamá?',opts:['"Ten cuidado"','"¿Ya comiste?"','"Te quiero"','Las tres'],ok:3},
+  {q:'¿Qué es lo que más le importa a mamá en el mundo?',opts:['La familia','La paz en casa','Ver a sus seres queridos felices','Todo eso junto'],ok:3},
+  {q:'¿Cuál es el superpoder de mamá?',opts:['Saber cuándo estás triste','Encontrar todo lo que se pierde','Cocinar con amor sin receta','Todos los anteriores'],ok:3},
+  {q:'¿Qué palabras definen mejor a mamá?',opts:['Fuerte y tierna','Paciente e incondicional','Valiente y amorosa','Todo lo anterior y mucho más'],ok:3},
 ];
- 
-let qIdx = 0, score = 0, answered = false;
- 
+let qI=0,qScore=0,qAnswered=false;
 function renderQuiz(){
-  if(qIdx >= preguntas.length){ mostrarResultado(); return; }
-  const p = preguntas[qIdx];
-  answered = false;
-  document.getElementById('quiz-prog-text').textContent = `Pregunta ${qIdx+1} de ${preguntas.length}`;
-  document.getElementById('quiz-bar').style.width = ((qIdx+1)/preguntas.length*100)+'%';
-  document.getElementById('quiz-q').textContent = p.q;
-  const opts = document.getElementById('quiz-opts');
-  opts.innerHTML = '';
-  p.opts.forEach((o,i)=>{
-    const btn = document.createElement('button');
-    btn.className = 'quiz-option';
-    btn.textContent = o;
-    btn.onclick = () => elegir(i, btn);
-    opts.appendChild(btn);
-  });
+  if(qI>=qs.length){showResult();return;}
+  qAnswered=false;const p=qs[qI];
+  document.getElementById('q-prog-txt').textContent=`Pregunta ${qI+1} de ${qs.length}`;
+  document.getElementById('q-fill').style.width=((qI+1)/qs.length*100)+'%';
+  document.getElementById('q-text').textContent=p.q;
+  const o=document.getElementById('q-opts');o.innerHTML='';
+  p.opts.forEach((opt,i)=>{const b=document.createElement('button');b.className='q-opt';b.textContent=opt;b.onclick=()=>choose(i,b);o.appendChild(b);});
 }
- 
-function elegir(i, btn){
-  if(answered) return;
-  answered = true;
-  const p = preguntas[qIdx];
-  document.querySelectorAll('.quiz-option').forEach((b,j)=>{
-    b.disabled = true;
-    if(j===p.ok) b.classList.add('correct');
-    else if(j===i) b.classList.add('wrong');
-  });
-  if(i===p.ok) score++;
-  setTimeout(()=>{ qIdx++; renderQuiz(); }, 1200);
+function choose(i,btn){
+  if(qAnswered)return;qAnswered=true;const p=qs[qI];
+  document.querySelectorAll('.q-opt').forEach((b,j)=>{b.disabled=true;if(j===p.ok)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+  if(i===p.ok)qScore++;
+  setTimeout(()=>{qI++;renderQuiz();},1200);
 }
- 
-function mostrarResultado(){
-  const msgs = [
-    'Todavía hay mucho amor que descubrir juntas 💕',
-    '¡Van conociéndose cada vez más! 🌸',
-    '¡Casi perfectas! El amor lo dice todo 💗',
-    '¡Se conocen de memoria! Son almas gemelas 💞',
-    '¡Perfectas! Dos corazones que laten igual 💖'
-  ];
-  const idx = Math.floor(score/(preguntas.length)*msgs.length);
-  document.getElementById('quiz-box').innerHTML = `
-    <div class="quiz-result">
-      <div class="quiz-score">${score}/${preguntas.length}</div>
-      <p class="quiz-result-msg">${msgs[Math.min(idx,msgs.length-1)]}</p>
-      <button class="btn-outline" onclick="qIdx=0;score=0;renderQuiz()">Jugar de nuevo</button>
-    </div>
-  `;
+function showResult(){
+  const msgs=['Todavía hay mucho amor por descubrir 💕','¡Van conociéndose cada vez más! 🌸','¡Casi perfectas! 💗','¡Se conocen de memoria! 💞','¡Perfectas! Almas gemelas 💖'];
+  const m=msgs[Math.min(Math.floor(qScore/qs.length*msgs.length),msgs.length-1)];
+  document.getElementById('quiz-box').innerHTML=`<div class="q-result"><div class="q-score">${qScore}/${qs.length}</div><p class="q-msg">${m}</p><br><button class="btn-o" style="margin-top:1rem" onclick="qI=0;qScore=0;renderQuiz()">Jugar de nuevo</button></div>`;
   lanzarCorazones();
 }
- 
 renderQuiz();
  
-/* ── CORAZONES CONFETTI ── */
+/* CORAZONES */
 function lanzarCorazones(){
-  for(let i=0;i<18;i++){
-    const h = document.createElement('div');
-    h.className = 'heart-particle';
-    h.textContent = ['💗','💕','🌸','💖','🌷'][Math.floor(Math.random()*5)];
-    h.style.left = (10+Math.random()*80)+'vw';
-    h.style.top = '-2rem';
-    h.style.animationDuration = (2+Math.random()*2)+'s';
-    h.style.animationDelay = (Math.random()*0.8)+'s';
-    h.style.fontSize = (1+Math.random())+'rem';
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(), 5000);
+  const items=['💗','💕','🌸','💖','🌷','✨','💝'];
+  for(let i=0;i<24;i++){
+    const h=document.createElement('div');h.className='hpart';
+    h.textContent=items[Math.floor(Math.random()*items.length)];
+    h.style.cssText=`left:${5+Math.random()*90}vw;top:-2rem;font-size:${0.9+Math.random()*1.4}rem;animation-duration:${2.5+Math.random()*2.5}s;animation-delay:${Math.random()*1}s;`;
+    document.body.appendChild(h);setTimeout(()=>h.remove(),6000);
   }
 }
- 
-// lanzar al cargar
-setTimeout(lanzarCorazones, 1800);
+setTimeout(lanzarCorazones,3000);
 </script>
 </body>
 </html>
+ 
